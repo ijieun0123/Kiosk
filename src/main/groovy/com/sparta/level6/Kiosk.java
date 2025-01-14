@@ -21,7 +21,6 @@ public class Kiosk {
             }
             System.out.println("0. 종료      | 종료");
 
-            // 장바구니 요소가 0 이 아닌 경우
             if(!cart.getCartItems().isEmpty()){
                 System.out.println("[ ORDER MENU ]");
                 System.out.println("4. Orders       | 장바구니를 확인 후 주문합니다.");
@@ -123,7 +122,7 @@ public class Kiosk {
 
             int fourthNum = in.nextInt();
             if(fourthNum == 1){
-                System.out.println("주문이 완료되었습니다. 금액은 W " + totalAmount + " 입니다.");
+                getFifthResult(totalAmount);
             } else if(fourthNum == 2){
                 start(menu);
             }
@@ -132,6 +131,28 @@ public class Kiosk {
             System.out.println("주문이 취소되었습니다.");
             System.out.println();
             start(menu);
+        }
+    }
+
+    void getFifthResult(double totalAmount){
+        System.out.println("할인 정보를 입력해주세요.");
+        System.out.println("1. 국가유공자 : 10%");
+        System.out.println("2. 군인     :  5%");
+        System.out.println("3. 학생     :  3%");
+        System.out.println("4. 일반     :  0%");
+
+        int fifthNum = in.nextInt();
+        if(fifthNum == 1){
+            System.out.println("주문이 완료되었습니다. 금액은 W " + totalAmount * ( 1 - Sale.PERSON_OF_NATIONAL_MERIT.getDiscountRate() / 100 ) + " 입니다.");
+        } else if(fifthNum == 2){
+            System.out.println("주문이 완료되었습니다. 금액은 W " + totalAmount * ( 1 - Sale.SOLDIER.getDiscountRate() / 100 ) + " 입니다.");
+        } else if(fifthNum == 3){
+            System.out.println("주문이 완료되었습니다. 금액은 W " + totalAmount * ( 1 - Sale.STUDENT.getDiscountRate() / 100 ) + " 입니다.");
+        } else if(fifthNum == 4){
+            System.out.println("주문이 완료되었습니다. 금액은 W " + totalAmount * ( 1 - Sale.GENERAL.getDiscountRate() / 100 ) + " 입니다.");
+        } else {
+            System.out.println("1 ~ 4 숫자를 입력하세요.");
+            getFifthResult(totalAmount);
         }
     }
 
