@@ -32,13 +32,13 @@ public class Kiosk {
                 System.out.println("프로그램 종료.");
                 break;
             } else if(firstNum == 1 || firstNum == 2 || firstNum == 3){
-                getFirstResult(menuArr, menu, firstNum);
-                getSecondResult(menu, firstNum);
+                getBurgersDrinksDessertsMenu(menuArr, menu, firstNum);
+                getSelectMenuAndCart(menu, firstNum);
             } else if (firstNum > 3 && cart.getCartItems().isEmpty()){
                 System.out.println("0 ~ 3 숫자를 입력하세요.");
                 start(menu);
             } else if (firstNum < 6 && firstNum > 3 && !cart.getCartItems().isEmpty()){
-                getFourthResult(firstNum, menu);
+                getOrder(firstNum, menu);
                 break;
             } else {
                 System.out.println("0 ~ 5 숫자를 입력하세요.");
@@ -48,26 +48,26 @@ public class Kiosk {
         }
     }
 
-    void getFirstResult(String[] menuArr, List<Menu> menu, int firstNum){
+    void getBurgersDrinksDessertsMenu(String[] menuArr, List<Menu> menu, int firstNum){
         System.out.println(menuArr[firstNum-1]);
         menu.get(firstNum-1).getMenuItemsEl();
         System.out.println("0. 뒤로가기");
     }
 
-    void getSecondResult(List<Menu> menu, int firstNum){
+    void getSelectMenuAndCart(List<Menu> menu, int firstNum){
         int secondNum = in.nextInt();
         if(secondNum == 0){
             start(menu);
         } else if(secondNum == 1 || secondNum == 2 || secondNum == 3 || secondNum == 4){
             getSelectMenu(menu, firstNum, secondNum);
-            getThirdResult(menu, firstNum, secondNum);
+            getCart(menu, firstNum, secondNum);
         } else{
             System.out.println("0 ~ 4 숫자를 입력하세요.");
-            getSecondResult(menu, firstNum);
+            getSelectMenuAndCart(menu, firstNum);
         }
     }
 
-    void getThirdResult(List<Menu> menu, int firstNum, int secondNum){
+    void getCart(List<Menu> menu, int firstNum, int secondNum){
         int thirdNum = in.nextInt();
 
         if(thirdNum == 1) {
@@ -96,14 +96,14 @@ public class Kiosk {
             System.out.println();
         } else {
             System.out.println("1 ~ 2 숫자를 입력하세요.");
-            getThirdResult(menu, firstNum, secondNum);
+            getCart(menu, firstNum, secondNum);
         }
 
         System.out.println("아래 메뉴판을 보시고 메뉴를 골라 입력해주세요.");
         start(menu);
     }
 
-    void getFourthResult(int firstNum, List<Menu> menu){
+    void getOrder(int firstNum, List<Menu> menu){
         if(firstNum == 4){
             System.out.println("아래와 같이 주문하시겠습니까 ?");
             System.out.println();
@@ -122,7 +122,7 @@ public class Kiosk {
 
             int fourthNum = in.nextInt();
             if(fourthNum == 1){
-                getFifthResult(totalAmount);
+                getSale(totalAmount);
             } else if(fourthNum == 2){
                 start(menu);
             }
@@ -134,7 +134,7 @@ public class Kiosk {
         }
     }
 
-    void getFifthResult(double totalAmount){
+    void getSale(double totalAmount){
         System.out.println("할인 정보를 입력해주세요.");
         System.out.println("1. 국가유공자 : 10%");
         System.out.println("2. 군인     :  5%");
@@ -152,7 +152,7 @@ public class Kiosk {
             System.out.println("주문이 완료되었습니다. 금액은 W " + totalAmount * ( 1 - Sale.GENERAL.getDiscountRate() / 100 ) + " 입니다.");
         } else {
             System.out.println("1 ~ 4 숫자를 입력하세요.");
-            getFifthResult(totalAmount);
+            getSale(totalAmount);
         }
     }
 
