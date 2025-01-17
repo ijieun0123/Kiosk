@@ -61,3 +61,6 @@
 
 3. `0`을 입력하면 프로그램이 종료됩니다.
 
+## 블로그
+
+[[CH 2 키오스크 과제] 트러블슈팅](https://velog.io/@cock321/CH-2-%ED%82%A4%EC%98%A4%EC%8A%A4%ED%81%AC-%EA%B3%BC%EC%A0%9C-%ED%8A%B8%EB%9F%AC%EB%B8%94%EC%8A%88%ED%8C%85)
